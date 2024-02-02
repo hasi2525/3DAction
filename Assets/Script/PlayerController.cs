@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerStatus))]
-[RequireComponent(typeof(MobAttack))]
+//[RequireComponent(typeof(CharacterController))]
+//[RequireComponent(typeof(PlayerStatus))]
+//[RequireComponent(typeof(MobAttack))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]

@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MobStatus))]
+//[RequireComponent(typeof(MobStatus))]
 public class MobAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private Collider attackCollider; // Collider型を正しく指定
+    [SerializeField] private Collider attackCollider;
 
     private MobStatus _status;
 
@@ -16,7 +15,7 @@ public class MobAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 攻撃可能な状態なら攻撃を試みる。
+    /// 攻撃可能な状態なら攻撃する
     /// </summary>
     public void AttackIfPossible()
     {
@@ -26,7 +25,7 @@ public class MobAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 特定の対象が攻撃範囲に入れば攻撃を試みる。
+    /// 特定の対象が攻撃範囲に入れば攻撃する
     /// </summary>
     /// <param name="collider">攻撃範囲に入った対象のコライダー</param>
     public void OnAttackRangeEnter(Collider collider)
@@ -35,7 +34,7 @@ public class MobAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 攻撃開始時に呼ばれ、攻撃用コライダーを有効にする。
+    /// 攻撃開始時に呼ばれ、攻撃用コライダーを有効
     /// </summary>
     public void OnAttackStart()
     {

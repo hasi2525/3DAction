@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// プレイヤーの基本的な状態を管理する抽象クラス。
+/// プレイヤーの基本的な状態を管理する抽象クラス
 /// </summary>
 public abstract class MobStatus : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public abstract class MobStatus : MonoBehaviour
 
     // 移動可能か
     public bool IsMoveble => StateEnum.Normal == _state;
+
     // 攻撃可能か
     public bool IsAttackable => StateEnum.Normal == _state;
 
@@ -42,7 +43,7 @@ public abstract class MobStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// キャラクターが倒れた時に呼ばれるメソッド。
+    /// キャラクターが倒れた時に呼ばれるメソッド
     /// </summary>
     protected virtual void OnDie()
     {
@@ -50,7 +51,7 @@ public abstract class MobStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// 指定値のダメージを受けるメソッド。
+    /// 指定値のダメージを受けるメソッド
     /// </summary>
     /// <param name="damage">受けるダメージの量</param>
     public void Damage(int damage)
@@ -67,7 +68,7 @@ public abstract class MobStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// 攻撃可能な状態に移行するメソッド。
+    /// 攻撃可能な状態に移行するメソッド
     /// </summary>
     public void GoToAttackStateIfPossible()
     {
@@ -78,7 +79,7 @@ public abstract class MobStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// 通常の状態に移行するメソッド。
+    /// 通常の状態に移行するメソッド
     /// </summary>
     public void GoToNormalStateIfPossible()
     {

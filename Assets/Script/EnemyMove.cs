@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(EnemyStatus))]
+//[RequireComponent(typeof(NavMeshAgent))]
+//[RequireComponent(typeof(EnemyStatus))]
+
 /// <summary>
 /// 敵の移動を制御するスクリプト。
 /// </summary>
@@ -20,7 +21,7 @@ public class EnemyMove : MonoBehaviour
 
     void Start()
     {
-        //NavMeshAgentを取得します。
+        //NavMeshAgentを取得
         _agent = GetComponent<NavMeshAgent>();
         _status = GetComponent<EnemyStatus>();
     }
@@ -39,7 +40,7 @@ public class EnemyMove : MonoBehaviour
 
 
 
-        // 検出されたオブジェクトがプレイヤーである場合、その位置を目的地に設定します
+        // 検出されたオブジェクトがプレイヤーである場合、その位置を目的地に設定
         if (collider.CompareTag("Player"))
         {
             //自分とプレイヤーの位置差

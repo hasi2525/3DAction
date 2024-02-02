@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))]
+//[RequireComponent(typeof(Collider))]
 
 public class CollisionDetector : MonoBehaviour
 {
