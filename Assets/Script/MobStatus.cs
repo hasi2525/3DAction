@@ -12,6 +12,8 @@ public abstract class MobStatus : MonoBehaviour
         Normal,
         // 攻撃中
         Attack,
+        //回避中
+        Rolling,
         // 死亡
         Die
     }
@@ -24,6 +26,9 @@ public abstract class MobStatus : MonoBehaviour
 
     // 攻撃可能か
     public bool IsAttackable => StateEnum.Normal == _state;
+
+    //　回避中か
+    public bool IsRolling => StateEnum.Normal == _state;
 
     // ライフの最大値
     public float LifeMax => lifeMax;
@@ -86,5 +91,15 @@ public abstract class MobStatus : MonoBehaviour
         if (_state == StateEnum.Die) return;
 
         _state = StateEnum.Normal;
-    }
+    }   
+    ///　<summary>
+    ///　回避の状態に移行するメソッド
+    /// </summary>
+ 　   public void GoToRollingStateIfPossible()
+   　 {
+        if (!IsRolling) return;
+
+        _state = StateEnum.Rolling;
+        _animator.SetTrigger("Rolling");
+   　 }
 }

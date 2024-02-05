@@ -12,7 +12,7 @@ public class EnemyStatus : MobStatus
         _agent = GetComponent<NavMeshAgent>();
 
     }
-
+    
     private void Update()
     {
         _animator.SetFloat("MoveSpeed", _agent.velocity.magnitude);
@@ -23,10 +23,10 @@ public class EnemyStatus : MobStatus
         base.OnDie();
         StartCoroutine(DestroyCoroutine());
     }
-    //
+    //ÇQïbå„Ç…è¡Ç¶ÇÈ
     private IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
     }
 }

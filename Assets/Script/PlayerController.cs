@@ -5,19 +5,31 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    // プレイヤーキャラクターのアニメーター
     [SerializeField]
-    private Animator animator;
+    private Animator animator; 
+    // 移動速度
     [SerializeField]
-    private float moveSpeed = 3;
+    private float moveSpeed = 3; 
+    // ジャンプ力
+    //[SerializeField]
+    //private float jumpPower = 3;
     [SerializeField]
-    private float jumpPower = 3;
-
-    private CharacterController _characterController;
+    private float RollingPower = 3;
+    // キャラクターコントローラー
+    private CharacterController _characterController; 
+    // Transformコンポーネント
     private Transform _transform;
+    // 移動ベクトル
     private Vector3 _moveVelocity;
-    private PlayerStatus _status;
+    // プレイヤーの状態
+    private PlayerStatus _status; 
+    // モブの攻撃
     private MobAttack _attack;
+    //プレイヤーの回避
+    private PlayerRolling _playerRolling;
 
+    
     /// <summary>
     /// 初期化処理
     /// </summary>
@@ -27,6 +39,7 @@ public class PlayerController : MonoBehaviour
         _transform = transform;
         _status = GetComponent<PlayerStatus>();
         _attack = GetComponent<MobAttack>();
+        _playerRolling = GetComponent<PlayerRolling>();
     }
 
     /// <summary>
@@ -34,9 +47,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // 地上または空中かをデバッグログに表示
-        Debug.Log(_characterController.isGrounded ? "地上" : "空中");
-
         // 攻撃ボタンが押されたら攻撃メソッドを実行
         if (Input.GetButtonDown("Fire1"))
         {
@@ -50,6 +60,13 @@ public class PlayerController : MonoBehaviour
             _moveVelocity.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
             _moveVelocity.z = Input.GetAxisRaw("Vertical") * moveSpeed;
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                _playerRolling.RollingIfPossible();
+                _moveVelocity = transform.forward * RollingPower;
+                print("回避");
+            }
+
             // 移動方向を向く
             _transform.LookAt(_transform.position + new Vector3(_moveVelocity.x, 0, _moveVelocity.z));
         }
@@ -59,22 +76,20 @@ public class PlayerController : MonoBehaviour
             _moveVelocity.x = 0;
             _moveVelocity.y = 0;
         }
-
         // 地上にいる時、ジャンプボタンが押されたらジャンプ
         if (_characterController.isGrounded)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                print("ジャンプ");
-                _moveVelocity.y = jumpPower;
-            }
+            //if (Input.GetButtonDown("Jump"))
+            //{
+            //    print("ジャンプ");
+            //    _moveVelocity.y = jumpPower;
+            //}
         }
-        else
-        {
-            // 空中にいる場合、重力をかけて下降させる
-            _moveVelocity.y += Physics.gravity.y * Time.deltaTime;
-        }
-
+        //else
+        //{
+        //    // 空中にいる場合、重力をかけて下降させる
+        //    _moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+        //}
         // プレイヤーを移動させる
         _characterController.Move(_moveVelocity * Time.deltaTime);
 
