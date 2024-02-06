@@ -26,14 +26,14 @@ public class PlayerRolling : MonoBehaviour
     /// </summary>
     public void OnRollingStart()
     {
-        RollingCollider.enabled = false;
+        //RollingCollider.enabled = false;
     }
     /// <summary>
     /// 回避が終了した時に呼ばれ、クールダウンを開始する
     /// </summary>
     public void OnRollingFinished()
     {
-        RollingCollider.enabled = true;
+        //RollingCollider.enabled = true;
         StartCoroutine(CooldownCoroutine());
     }
     private IEnumerator CooldownCoroutine()

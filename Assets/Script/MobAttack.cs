@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-//[RequireComponent(typeof(MobStatus))]
 public class MobAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private Collider attackCollider;
-
     private MobStatus _status;
+
+    private StartParticle startParticle;
 
     void Start()
     {
         _status = GetComponent<MobStatus>();
+        startParticle = GetComponent<StartParticle>();
     }
 
     /// <summary>
@@ -50,6 +51,8 @@ public class MobAttack : MonoBehaviour
         MobStatus targetPlayer = collider.GetComponent<MobStatus>();
         if (targetPlayer != null)
         {
+            //エフェクトを出す
+            startParticle.Effect();
             targetPlayer.Damage(1);
         }
     }
