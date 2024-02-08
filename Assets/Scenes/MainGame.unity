@@ -396,8 +396,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652301823}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33493143, y: -1e-45, z: 1e-45, w: 0.9422425}
-  m_LocalPosition: {x: 15.5, y: 4.5, z: 3.5440326}
+  m_LocalRotation: {x: 0.33493143, y: -1e-45, z: 0, w: 0.9422425}
+  m_LocalPosition: {x: 23.93, y: 4.5, z: 3.5440326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -582,6 +582,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &776566640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2922036519274813162, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+  m_PrefabInstance: {fileID: 4648800970861359478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &801292650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1149,7 +1154,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: dcaeef441717b2b4f95496f182c722d4, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &1335753179
 Terrain:
   m_ObjectHideFlags: 0
@@ -6445,8 +6450,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462481008}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33493143, y: -1e-45, z: 1e-45, w: 0.9422425}
-  m_LocalPosition: {x: 15.5, y: 4.5, z: 3.5440326}
+  m_LocalRotation: {x: 0.33493143, y: -1e-45, z: 0, w: 0.9422425}
+  m_LocalPosition: {x: 23.93, y: 4.5, z: 3.5440326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6853,6 +6858,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5664211358842388380, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
   m_PrefabInstance: {fileID: 4648800970861359478}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &570454565357456950 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7471817257899546202, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+  m_PrefabInstance: {fileID: 4648800970861359478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &570454565357456961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776566640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c00a797fa33924a9212e455e205c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 570454565357456950}
+  moveSpeed: 2
 --- !u!4 &4530652707734828599
 Transform:
   m_ObjectHideFlags: 0
@@ -6876,13 +6900,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274819874231439482, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877949795033945545, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2922036519274813162, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
       propertyPath: m_Name
       value: Query-Chan-SD
       objectReference: {fileID: 0}
+    - target: {fileID: 5112804981557742460, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 5664211358842388380, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.5
+      value: 23.93
       objectReference: {fileID: 0}
     - target: {fileID: 5664211358842388380, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6927,7 +6963,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2922036519274813162, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 570454565357456961}
   m_SourcePrefab: {fileID: 100100000, guid: 04d1f26240fe4a644a49358a4142c72d, type: 3}
 --- !u!1 &4867948778559326281
 GameObject:
