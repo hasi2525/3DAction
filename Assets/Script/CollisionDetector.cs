@@ -20,7 +20,8 @@ public class CollisionDetector : MonoBehaviour
         onTriggerStay.Invoke(collider);
     }
 
-    [Serializable] public class TriggerEvent : UnityEvent<Collider>
+    [Serializable] 
+    public class TriggerEvent : UnityEvent<Collider>
     {
 
     }

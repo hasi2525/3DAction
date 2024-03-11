@@ -7,7 +7,7 @@ using UnityEngine.AI;
 //[RequireComponent(typeof(EnemyStatus))]
 
 /// <summary>
-/// 敵の移動を制御するスクリプト。
+/// 敵の移動を制御するスクリプト
 /// </summary>
 public class EnemyMove : MonoBehaviour
 {
