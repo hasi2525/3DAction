@@ -13,12 +13,13 @@ public class PlayerController3 : MonoBehaviour
     private float moveSpeed = 3;
 
     private Transform _transform;
-    private Vector3 _moveVelocity; 
+    //private Vector3 _moveVelocity; 
     // プレイヤーの状態を管理するコンポーネント
     private PlayerStatus _status; 
     // 敵への攻撃を管理するコンポーネント
     private MobAttack _attack; 
     private Rigidbody rb; 
+
 
     void Start()
     {
@@ -90,6 +91,8 @@ public class PlayerController3 : MonoBehaviour
         // 攻撃ボタンが押されたら攻撃
         if (Input.GetButtonDown("Fire1"))
         {
+            //攻撃アニメーション中などにプレイヤーが動き続けないようにする
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
             _attack.AttackIfPossible();
         }
     }
