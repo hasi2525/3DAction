@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class MobAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private Collider attackCollider;
-    private MobStatus _status;
+    [SerializeField]
+    private float attackCooldown = 0.5f;
+    [SerializeField] 
+    private Collider attackCollider;
 
-    private StartParticle startParticle;
+    private MobStatus _status;
 
     void Start()
     {
         _status = GetComponent<MobStatus>();
-        startParticle = GetComponent<StartParticle>();
     }
 
     /// <summary>
@@ -51,10 +51,9 @@ public class MobAttack : MonoBehaviour
         MobStatus targetPlayer = collider.GetComponent<MobStatus>();
         if (targetPlayer != null)
         {
-            //エフェクトを出す
-            startParticle.Effect();
             targetPlayer.Damage(1);
         }
+
     }
 
     /// <summary>

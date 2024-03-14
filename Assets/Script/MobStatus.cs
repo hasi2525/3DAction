@@ -19,7 +19,8 @@ public abstract class MobStatus : MonoBehaviour
     }
 
     // ライフの最大値
-    [SerializeField] private float lifeMax = 10;
+    [SerializeField] 
+    private float lifeMax = 10;
 
     // 移動可能か
     public bool IsMoveble => StateEnum.Normal == _state;
