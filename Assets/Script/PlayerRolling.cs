@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class PlayerRolling : MonoBehaviour
 {
-    [SerializeField] private float RollingCooldown = 0.5f;
-    [SerializeField] private Collider RollingCollider;
+    [SerializeField]
+    private float RollingCooldown = 0.5f;
+
+    [SerializeField]
+    private Collider RollingCollider;
 
     private MobStatus _status;
 

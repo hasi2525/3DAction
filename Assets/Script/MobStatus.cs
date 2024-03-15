@@ -23,7 +23,7 @@ public abstract class MobStatus : MonoBehaviour
     private float lifeMax = 10;
 
     // ˆÚ“®‰Â”\‚©
-    public bool IsMoveble => StateEnum.Normal == _state;
+    public bool IsMoveble =>   StateEnum.Normal == _state;
 
     // UŒ‚‰Â”\‚©
     public bool IsAttackable => StateEnum.Normal == _state;

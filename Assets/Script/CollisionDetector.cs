@@ -6,6 +6,7 @@ public class CollisionDetector : MonoBehaviour
 {
     [SerializeField]
     private TriggerEvent onTriggerEnter = new TriggerEvent();
+
     [SerializeField]
     private TriggerEvent onTriggerStay = new TriggerEvent();
 

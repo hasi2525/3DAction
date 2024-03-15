@@ -572,7 +572,6 @@ GameObject:
   - component: {fileID: 2859829210615820648}
   - component: {fileID: 7062339133936206266}
   - component: {fileID: 7471817257899546202}
-  - component: {fileID: 6188176451161494013}
   m_Layer: 7
   m_Name: Query-Chan-SD
   m_TagString: Player
@@ -768,7 +767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   attackCollider: {fileID: 1400300846665012504}
-  startParticle: {fileID: 0}
 --- !u!95 &7471817257899546202
 Animator:
   serializedVersion: 5
@@ -790,20 +788,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6188176451161494013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2922036519274813162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3559011e74dea39488b8cb39bef36bf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RollingCooldown: 0.5
-  RollingCollider: {fileID: 0}
 --- !u!1 &4472994960316304351
 GameObject:
   m_ObjectHideFlags: 0
