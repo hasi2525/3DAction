@@ -5,16 +5,13 @@ public class MobAttack : MonoBehaviour
 {
     [SerializeField]
     private float attackCooldown = 0.5f;
-
     [SerializeField] 
     private Collider attackCollider;
 
     private MobStatus _status;
 
-    // ヒットエフェクト
-    public GameObject hitEffectPrefab;
-    // 攻撃の射程距離
-    public float attackRange = 10f; 
+    public GameObject hitEffectPrefab; // ヒットエフェクトのPrefab
+    public float attackRange = 10f; // 攻撃の射程距離
     void Start()
     {
         _status = GetComponent<MobStatus>();
@@ -51,10 +48,8 @@ public class MobAttack : MonoBehaviour
     {
         int layerMask = (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Player")); // "Enemy"と"Player"レイヤーのみを対象とする
         RaycastHit hit;
-        // 攻撃の発生源
-        Vector3 attackOrigin = transform.position;
-        // 攻撃の方向
-        Vector3 attackDirection = transform.forward;
+        Vector3 attackOrigin = transform.position; // 攻撃の発生源
+        Vector3 attackDirection = transform.forward; // 攻撃の方向
 
         if (Physics.Raycast(attackOrigin, attackDirection, out hit, attackRange, layerMask))
         {
@@ -73,7 +68,7 @@ public class MobAttack : MonoBehaviour
         MobStatus targetPlayer = collider.GetComponent<MobStatus>();
         if (targetPlayer != null)
         {
-            targetPlayer.Damage(1);
+            targetPlayer.Damage(0);
             PerformAttack();
         }
     }

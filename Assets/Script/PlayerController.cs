@@ -1,99 +1,87 @@
 using UnityEngine;
 
 /// <summary>
-/// プレイヤーの操作を管理するクラス。
+/// プレイヤーの操作を制御するクラス
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    //Animatorコンポーネント
+    // プレイヤーキャラクターのアニメーター
     [SerializeField]
-    private Animator animator;
-    // プレイヤーの基本移動速度
+    private Animator animator; 
+    // 移動速度
     [SerializeField]
-    private float moveSpeed = 3;
-
+    private float moveSpeed = 3; 
+    // キャラクターコントローラー
+    private CharacterController _characterController; 
+    // Transformコンポーネント
     private Transform _transform;
-    //private Vector3 _moveVelocity; 
-    // プレイヤーの状態を管理するコンポーネント
+    // 移動ベクトル
+    private Vector3 _moveVelocity;
+    // プレイヤーの状態
     private PlayerStatus _status; 
-    // 敵への攻撃を管理するコンポーネント
-    private MobAttack _attack; 
-    private Rigidbody rb; 
+    // モブの攻撃
+    private MobAttack _attack;
+    //プレイヤーの回避
+    private PlayerRolling _playerRolling;
 
-
+    
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _characterController = GetComponent<CharacterController>();
         _transform = transform;
         _status = GetComponent<PlayerStatus>();
         _attack = GetComponent<MobAttack>();
-    }
-
-    private void Update()
-    {
-        AttackMove();
-    }
-
-    void FixedUpdate()
-    {
-        Move();
+        _playerRolling = GetComponent<PlayerRolling>();
     }
 
     /// <summary>
-    /// プレイヤーの移動処理
+    /// プレイヤーの入力や動作を更新するメソッド
     /// </summary>
-    private void Move()
+    void FixedUpdate()
     {
+        // 攻撃ボタンが押されたら攻撃メソッドを実行
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _attack.AttackIfPossible();
+        }
+
         // 移動が可能なら移動処理を行う
         if (_status.IsMoveble)
         {
-            bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            // 入力に基づいて移動ベクトルを設定
+            _moveVelocity.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
+            _moveVelocity.z = Input.GetAxisRaw("Vertical") * moveSpeed;
 
-            // キーボードからの入力を取得
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
-
-            if (direction.magnitude >= 0.1f)
-            {
-                // カメラの正面方向に基づいて、プレイヤーの向きを変える
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                // プレイヤーを移動方向に向ける
-                _transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-                // 走っているかどうかに応じて移動速度を変更
-                float currentSpeed = isRunning ? moveSpeed * 2 : moveSpeed;
-
-                // プレイヤーを移動させる
-                rb.velocity = new Vector3(moveDir.x * currentSpeed, rb.velocity.y, moveDir.z * currentSpeed);
-
-                // 移動速度と走っている状態をanimatorに反映させる
-                animator.SetFloat("MoveSpeed", direction.magnitude * (isRunning ? 2 : 1));
-                animator.SetBool("RunMoveSpeed", isRunning);
-            }
-            else
-            {
-                // 入力がない場合は動きを止める
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
-                animator.SetFloat("MoveSpeed", 0);
-                animator.SetBool("RunMoveSpeed", false);
-            }
+            // 移動方向を向く
+            _transform.LookAt(_transform.position + new Vector3(_moveVelocity.x, 0, _moveVelocity.z));
         }
-    }
-
-    /// <summary>
-    /// 攻撃処理
-    /// </summary>
-    void AttackMove()
-    {
-        // 攻撃ボタンが押されたら攻撃
-        if (Input.GetButtonDown("Fire1"))
+        else
         {
-            //攻撃アニメーション中などにプレイヤーが動き続けないようにする
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            _attack.AttackIfPossible();
+            // 移動が不可能なら移動ベクトルをゼロにする
+            _moveVelocity.x = 0;
+            _moveVelocity.y = 0;
         }
+        // 地上にいる時、ジャンプボタンが押されたらジャンプ
+        if (_characterController.isGrounded)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                _playerRolling.RollingIfPossible();
+                print("回避");
+            }
+        }
+        else
+        {
+           // 空中にいる場合、重力をかけて下降させる
+            _moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+        }
+        // プレイヤーを移動させる
+        _characterController.Move(_moveVelocity * Time.deltaTime);
+
+        // 移動スピードをanimatorに反映する
+        animator.SetFloat("MoveSpeed", new Vector3(_moveVelocity.x, 0, _moveVelocity.z).magnitude);
     }
 }
