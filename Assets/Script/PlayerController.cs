@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _characterController = GetComponent<CharacterController>();
         _transform = transform;
+        _characterController = GetComponent<CharacterController>();
         _status = GetComponent<PlayerStatus>();
         _attack = GetComponent<MobAttack>();
         _playerRolling = GetComponent<PlayerRolling>();

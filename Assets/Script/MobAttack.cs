@@ -34,6 +34,7 @@ public class MobAttack : MonoBehaviour
     public void OnAttackRangeEnter(Collider collider)
     {
         AttackIfPossible();
+
     }
 
     /// <summary>
